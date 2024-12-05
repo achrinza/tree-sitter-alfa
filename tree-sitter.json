@@ -1,0 +1,36 @@
+{
+  "grammars": [
+    {
+      "name": "alfa",
+      "camelcase": "Alfa",
+      "scope": "source.alfa",
+      "file-types": [
+        ".alfa"
+      ],
+      "injection-regex": "^alfa$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "GPL-2.0-or-later",
+    "description": "Abbreviated Language for Authorization Version 1.0",
+    "authors": [
+      {
+        "name": "Rifa Achrinza",
+        "email": "",
+        "url": "https://www.achrinza.com/"
+      }
+    ],
+    "links": {
+      "repository": "https://git.sr.ht/~achrinza/tree-sitter-alfa"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

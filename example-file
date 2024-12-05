@@ -1,0 +1,25 @@
+infix comm (<) = {
+  "urn:oasis:names:tc:xacml:1.0:function:integer-less-than" : integer integer -> boolean
+} inv >
+
+namespace Foo {
+  function test = "" : anyAtomic -> String
+  import foo.bar.*
+  attribute Bar {
+   id = "urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+   type = string
+   category = subjectCat // test
+}
+
+policyset global {
+ apply firstApplicable
+
+target clause "foo" or "bar" and true
+
+policy foo {}
+}
+}
+
+/* UWU
+
+My BOCK COMMENT */

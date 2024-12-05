@@ -1,0 +1,685 @@
+[
+  {
+    "type": "attribute_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "nested_identifier",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression_argument",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block_comment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "boolean",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "castable_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "category_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "condition_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression_argument",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "expression_argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "literal_identifier",
+          "named": true
+        },
+        {
+          "type": "nested_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "literal_identifier",
+          "named": true
+        },
+        {
+          "type": "nested_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "nested_identifier",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "nested_identifier",
+          "named": true
+        },
+        {
+          "type": "nested_wildcard_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "infix_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "infix_function_definition",
+          "named": true
+        },
+        {
+          "type": "infix_inverse_definition",
+          "named": true
+        },
+        {
+          "type": "infix_keyword",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "infix_function_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "infix_inverse_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "infix_keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "literal_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "castable_string",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "namespace_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_definition",
+          "named": true
+        },
+        {
+          "type": "category_definition",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "import_statement",
+          "named": true
+        },
+        {
+          "type": "nested_identifier",
+          "named": true
+        },
+        {
+          "type": "policyset_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nested_wildcard_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "nested_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "policy_combining_algorithm_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "policy_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "nested_identifier",
+          "named": true
+        },
+        {
+          "type": "policy_combining_algorithm_reference",
+          "named": true
+        },
+        {
+          "type": "rule_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "policy_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "nested_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "policyset_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "condition_definition",
+          "named": true
+        },
+        {
+          "type": "nested_identifier",
+          "named": true
+        },
+        {
+          "type": "policy_combining_algorithm_reference",
+          "named": true
+        },
+        {
+          "type": "policy_definition",
+          "named": true
+        },
+        {
+          "type": "policy_reference",
+          "named": true
+        },
+        {
+          "type": "policyset_definition",
+          "named": true
+        },
+        {
+          "type": "target_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "condition_definition",
+          "named": true
+        },
+        {
+          "type": "rule_permitordeny",
+          "named": true
+        },
+        {
+          "type": "target_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_permitordeny",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "import_statement",
+          "named": true
+        },
+        {
+          "type": "infix_definition",
+          "named": true
+        },
+        {
+          "type": "namespace_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "target_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unary_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*/",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "->",
+    "named": false
+  },
+  {
+    "type": ".*",
+    "named": false
+  },
+  {
+    "type": "/*",
+    "named": false
+  },
+  {
+    "type": "//",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "allowbags",
+    "named": false
+  },
+  {
+    "type": "and",
+    "named": false
+  },
+  {
+    "type": "apply",
+    "named": false
+  },
+  {
+    "type": "attribute",
+    "named": false
+  },
+  {
+    "type": "category",
+    "named": false
+  },
+  {
+    "type": "clause",
+    "named": false
+  },
+  {
+    "type": "comm",
+    "named": false
+  },
+  {
+    "type": "condition",
+    "named": false
+  },
+  {
+    "type": "deny",
+    "named": false
+  },
+  {
+    "type": "false",
+    "named": false
+  },
+  {
+    "type": "function",
+    "named": false
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "import",
+    "named": false
+  },
+  {
+    "type": "infix",
+    "named": false
+  },
+  {
+    "type": "inv",
+    "named": false
+  },
+  {
+    "type": "namespace",
+    "named": false
+  },
+  {
+    "type": "nested_identifier",
+    "named": true
+  },
+  {
+    "type": "number",
+    "named": true
+  },
+  {
+    "type": "operator",
+    "named": true
+  },
+  {
+    "type": "or",
+    "named": false
+  },
+  {
+    "type": "permit",
+    "named": false
+  },
+  {
+    "type": "policy",
+    "named": false
+  },
+  {
+    "type": "policyset",
+    "named": false
+  },
+  {
+    "type": "target",
+    "named": false
+  },
+  {
+    "type": "true",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]
