@@ -135,6 +135,29 @@
         {
           "type": "literal_identifier",
           "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_reference",
+          "named": true
+        },
+        {
+          "type": "literal_identifier",
+          "named": true
         },
         {
           "type": "nested_identifier",
@@ -152,15 +175,7 @@
       "required": true,
       "types": [
         {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "literal_identifier",
+          "type": "function_argument",
           "named": true
         },
         {
@@ -184,6 +199,21 @@
         },
         {
           "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "nested_identifier",
           "named": true
         }
       ]
@@ -377,6 +407,10 @@
         {
           "type": "rule_definition",
           "named": true
+        },
+        {
+          "type": "string",
+          "named": true
         }
       ]
     }
@@ -440,11 +474,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "condition_definition",
+          "named": true
+        },
+        {
+          "type": "nested_identifier",
           "named": true
         },
         {
@@ -493,6 +531,21 @@
     "fields": {}
   },
   {
+    "type": "target_clause_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "target_definition",
     "named": true,
     "fields": {},
@@ -501,7 +554,7 @@
       "required": true,
       "types": [
         {
-          "type": "binary_expression",
+          "type": "target_clause_definition",
           "named": true
         }
       ]
@@ -572,6 +625,10 @@
   },
   {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {
@@ -664,6 +721,10 @@
   },
   {
     "type": "policyset",
+    "named": false
+  },
+  {
+    "type": "rule",
     "named": false
   },
   {

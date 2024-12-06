@@ -14,7 +14,9 @@ namespace Foo {
 policyset global {
  apply firstApplicable
 
-target clause "foo" or "bar" and true
+target clause "foo" or "bar" and true clause false
+
+condition allOf(foo(""),function[foo], "":time, function[biz])
 
 policy foo {}
 }

@@ -33,7 +33,7 @@ module.exports = grammar({
       '$',
       token.immediate($.identifier),
     ),*/
-    nested_identifier: $ => /[a-zA-Z][a-zA-Z_0-9]*(.[a-zA-Z][a-zA-Z_0-9]*)*/,
+    nested_identifier: $ => /[a-zA-Z][a-zA-Z_0-9]*(\.[a-zA-Z][a-zA-Z_0-9]*)*/,
     nested_wildcard_identifier: $ => seq(
       $.nested_identifier,
       token.immediate('.*'),
@@ -203,6 +203,10 @@ module.exports = grammar({
     policy_definition: $ => seq(
       'policy',
       $.nested_identifier,
+      optional(seq(
+        '=',
+        $.string,
+      )),
       '{',
       repeat(choice(
         $.policy_combining_algorithm_reference,
@@ -211,10 +215,19 @@ module.exports = grammar({
       '}',
     ),
 
-    rule_definition: $ => choice(
-      $.rule_permitordeny,
-      $.target_definition,
-      $.condition_definition,
+    rule_reference: $ => seq(
+      'rule',
+      $.nested_identifier
+    ),
+
+    rule_definition: $ => seq(
+      'rule',
+      optional($.nested_identifier),
+      choice(
+        $.rule_permitordeny,
+        $.target_definition,
+        $.condition_definition,
+      ),
     ),
 
     rule_permitordeny: $ => choice(
@@ -223,22 +236,21 @@ module.exports = grammar({
     ),
 
     function_call: $ => seq(
-      $.identifier,
+      $.nested_identifier,
       '(',
-      choice(
-        $.function_call,
-        $.literal_identifier,
-        $.nested_identifier,
-      ),
+      $.function_argument,
       repeat(seq(
         ',',
-        choice(
-          $.function_call,
-          $.literal_identifier,
-          $.nested_identifier,
-        ),
+        $.function_argument,
       )),
       ')',
+    ),
+
+    function_argument: $ => choice(
+      $.function_call,
+      $.function_reference,
+      $.literal_identifier,
+      $.nested_identifier,
     ),
 
     function_definition: $ => seq(
@@ -253,8 +265,8 @@ module.exports = grammar({
     ),
 
     function_reference: $ => seq(
-      'function',
-      '[',
+      token(prec(2,seq('function',
+                     '[',))),
       $.nested_identifier,
       ']',
     ),
@@ -271,10 +283,14 @@ module.exports = grammar({
 
     target_definition: $ => seq(
       'target',
-      repeat1(seq(
-        'clause',
-        $.binary_expression,
+      repeat1(choice(
+        $.target_clause_definition,
       )),
+    ),
+
+    target_clause_definition: $ => seq(
+      'clause',
+      $.binary_expression,
     ),
 
     condition_definition: $ => seq(
@@ -304,7 +320,7 @@ module.exports = grammar({
     ),
 
     expression_argument: $ => choice(
-      $.nested_identifier,
+//      $.nested_identifier,
       $.literal_identifier,
       $.function_call,
     ),
@@ -315,16 +331,42 @@ module.exports = grammar({
       repeat(choice(
         $.obligation_reference,
         $.obligation_definition,
+        $.advice_reference,
+        $.advice_definition,
       )),
       '}',
     ),
 
     obligation_reference: $ => seq(
       'obligation',
-      $.nested_identifier
+      '=',
+      $.string,
     ),
 
     obligation_definition: $ => seq(
+      'obligation',
+      $.nested_identifier,
+      optional(seq(
+        '{',
+        repeat(seq(
+          $.nested_identifier,
+          '=',
+          choice(
+            $.literal_identifier,
+            $.nested_identifier,
+          )
+        )),
+        '}',
+      )),
+    ),
+
+    advice_reference: $ => seq(
+      'obligation',
+      '=',
+      $.string,
+    ),
+
+    advice_definition: $ => seq(
       'obligation',
       $.nested_identifier,
       optional(seq(
