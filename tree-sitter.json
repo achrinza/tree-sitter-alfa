@@ -5,9 +5,10 @@
       "camelcase": "Alfa",
       "scope": "source.alfa",
       "file-types": [
-        ".alfa"
+        "alfa"
       ],
-      "injection-regex": "^alfa$"
+      "injection-regex": "^alfa$",
+      "highlights": "queries/highlights.scm"
     }
   ],
   "metadata": {

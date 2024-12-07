@@ -1,18 +1,75 @@
 [
   {
-    "type": "attribute_definition",
+    "type": "advice_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "identifier",
+          "type": "literal_identifier",
           "named": true
         },
         {
           "type": "nested_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_attributes",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "literal_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "attribute_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_attributes",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         },
         {
@@ -56,9 +113,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "datatype",
+          "named": true
+        },
         {
           "type": "string",
           "named": true
@@ -69,16 +130,17 @@
   {
     "type": "category_definition",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "string",
-          "named": true
-        }
-      ]
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -169,17 +231,24 @@
   {
     "type": "function_call",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
           "type": "function_argument",
-          "named": true
-        },
-        {
-          "type": "nested_identifier",
           "named": true
         }
       ]
@@ -188,54 +257,94 @@
   {
     "type": "function_definition",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "nested_identifier",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        }
-      ]
+    "fields": {
+      "parameter_type": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "function_definition_parameter",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "function_definition_parameter",
+            "named": true
+          }
+        ]
+      },
+      "return_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "function_definition_parameter",
+            "named": true
+          }
+        ]
+      },
+      "shortName": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      },
+      "uri": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "function_reference",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "nested_identifier",
-          "named": true
-        }
-      ]
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
     }
+  },
+  {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "import_statement",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "nested_identifier",
-          "named": true
-        },
-        {
-          "type": "nested_wildcard_identifier",
-          "named": true
-        }
-      ]
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_wildcard_identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -326,37 +435,65 @@
   {
     "type": "namespace_definition",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "attribute_definition",
-          "named": true
-        },
-        {
-          "type": "category_definition",
-          "named": true
-        },
-        {
-          "type": "function_definition",
-          "named": true
-        },
-        {
-          "type": "import_statement",
-          "named": true
-        },
-        {
-          "type": "nested_identifier",
-          "named": true
-        },
-        {
-          "type": "policyset_definition",
-          "named": true
-        }
-      ]
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "attribute_definition",
+            "named": true
+          },
+          {
+            "type": "category_definition",
+            "named": true
+          },
+          {
+            "type": "function_definition",
+            "named": true
+          },
+          {
+            "type": "import_statement",
+            "named": true
+          },
+          {
+            "type": "policy_combinator_definition",
+            "named": true
+          },
+          {
+            "type": "policyset_definition",
+            "named": true
+          },
+          {
+            "type": "rule_combinator_definition",
+            "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
     }
+  },
+  {
+    "type": "nested_identifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "nested_wildcard_identifier",
@@ -374,30 +511,102 @@
     }
   },
   {
-    "type": "policy_combining_algorithm_reference",
+    "type": "obligation_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
         {
-          "type": "identifier",
+          "type": "literal_identifier",
+          "named": true
+        },
+        {
+          "type": "nested_identifier",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "policy_definition",
+    "type": "policy_combinator_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "nested_identifier",
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "policy_combining_algorithm_reference",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "policy_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "advice_definition",
+          "named": true
+        },
+        {
+          "type": "obligation_definition",
           "named": true
         },
         {
@@ -411,6 +620,10 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "target_definition",
+          "named": true
         }
       ]
     }
@@ -418,16 +631,17 @@
   {
     "type": "policy_reference",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "nested_identifier",
-          "named": true
-        }
-      ]
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -439,11 +653,15 @@
       "required": true,
       "types": [
         {
-          "type": "condition_definition",
+          "type": "advice_definition",
           "named": true
         },
         {
           "type": "nested_identifier",
+          "named": true
+        },
+        {
+          "type": "obligation_definition",
           "named": true
         },
         {
@@ -470,19 +688,52 @@
     }
   },
   {
-    "type": "rule_definition",
+    "type": "rule_combinator_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "condition_definition",
+          "type": "string",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
         {
-          "type": "nested_identifier",
+          "type": "condition_definition",
           "named": true
         },
         {
@@ -563,7 +814,22 @@
   {
     "type": "unary_expression",
     "named": true,
-    "fields": {},
+    "fields": {
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "and",
+            "named": false
+          },
+          {
+            "type": "or",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -608,7 +874,7 @@
     "named": false
   },
   {
-    "type": ".*",
+    "type": ".",
     "named": false
   },
   {
@@ -628,7 +894,15 @@
     "named": false
   },
   {
+    "type": "[",
+    "named": false
+  },
+  {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "advice",
     "named": false
   },
   {
@@ -664,6 +938,10 @@
     "named": false
   },
   {
+    "type": "datatype",
+    "named": true
+  },
+  {
     "type": "deny",
     "named": false
   },
@@ -676,7 +954,7 @@
     "named": false
   },
   {
-    "type": "identifier",
+    "type": "function_definition_parameter",
     "named": true
   },
   {
@@ -696,12 +974,12 @@
     "named": false
   },
   {
-    "type": "nested_identifier",
+    "type": "number",
     "named": true
   },
   {
-    "type": "number",
-    "named": true
+    "type": "obligation",
+    "named": false
   },
   {
     "type": "operator",
@@ -720,11 +998,19 @@
     "named": false
   },
   {
+    "type": "policyCombinator",
+    "named": false
+  },
+  {
     "type": "policyset",
     "named": false
   },
   {
     "type": "rule",
+    "named": false
+  },
+  {
+    "type": "ruleCombinator",
     "named": false
   },
   {
