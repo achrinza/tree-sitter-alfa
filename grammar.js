@@ -57,21 +57,23 @@ module.exports = grammar({
     namespace_definition: $ => seq(
       'namespace',
       field('name', $.nested_identifier),
-      field('body', seq(
-        '{',
-        repeat(
-          choice(
-            $.import_statement,
-            $.attribute_definition,
-            $.category_definition,
-            $.policyset_definition,
-            $.function_definition,
-            $.rule_combinator_definition,
-            $.policy_combinator_definition,
-          ),
+      field('body', $.namespace_definition_body),
+    ),
+
+    namespace_definition_body: $ => seq(
+      '{',
+      repeat(
+        choice(
+          $.import_statement,
+          $.attribute_definition,
+          $.category_definition,
+          $.policyset_definition,
+          $.function_definition,
+          $.rule_combinator_definition,
+          $.policy_combinator_definition,
         ),
-        '}',
-      )),
+      ),
+      '}',
     ),
 
     literal_identifier: $ => choice(
@@ -130,6 +132,10 @@ module.exports = grammar({
       'attribute',
       field('name', $.nested_identifier),
       optional($.attribute_attributes),
+      field('body', $.attribute_definition_body),
+    ),
+
+    attribute_definition_body: $ => seq(
       '{',
       repeat(
         seq(
@@ -203,7 +209,11 @@ module.exports = grammar({
 
     policyset_definition: $ => seq(
       'policyset',
-      $.nested_identifier,
+      field('name', $.nested_identifier),
+      field('body', $.policyset_definition_body),
+    ),
+
+    policyset_definition_body: $ => seq(
       '{',
       repeat(choice(
         $.target_definition,
@@ -223,7 +233,7 @@ module.exports = grammar({
     ),
 
     policy_reference: $ => seq(
-      'policy',
+      optional('policy'),
       field('name', $.nested_identifier),
     ),
 
@@ -234,10 +244,16 @@ module.exports = grammar({
         '=',
         $.string,
       )),
+      $.policy_definition_body,
+    ),
+
+    policy_definition_body: $ => seq(
       '{',
       repeat(choice(
         $.target_definition,
         $.policy_combining_algorithm_reference,
+        $.policy_definition,
+        $.rule_reference,
         $.rule_definition,
         $.obligation_definition,
         $.advice_definition,
@@ -253,9 +269,14 @@ module.exports = grammar({
     rule_definition: $ => seq(
       'rule',
       optional(field('name', $.nested_identifier)),
+      $.rule_definition_body,
+    ),
+
+    rule_definition_body: $ => seq(
       '{',
       repeat(choice(
         $.rule_permitordeny,
+        $.decision_definition,
         $.target_definition,
         $.condition_definition,
       )),
@@ -358,18 +379,26 @@ module.exports = grammar({
       $.expression_argument,
       optional(seq(
         $.operator,
-        $.expression_argument,
+        field('reference', $.expression_argument),
       )),
     ),
 
     expression_argument: $ => choice(
-//      $.nested_identifier,
+      $.nested_identifier,
       $.literal_identifier,
       $.function_call,
     ),
 
+    decision_definition_type: $ => seq(
+      'on',
+      choice(
+        'permit',
+        'deny',
+      ),
+    ),
+
     decision_definition: $ => seq(
-      field('decision_type', choice('on permit', 'on deny')),
+      field('decision_type', $.decision_definition_type),
       '{',
       repeat(choice(
         $.obligation_reference,

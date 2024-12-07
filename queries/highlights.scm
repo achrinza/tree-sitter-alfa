@@ -8,7 +8,6 @@
  "clause"
  "comm"
  "deny"
- "function"
  "import"
  "infix"
  "inv"
@@ -47,6 +46,8 @@
  (nested_identifier)
  (nested_wildcard_identifier)
 ] @property
+(function_reference
+ "function" @property)
 
 [
  (operator)
@@ -59,8 +60,15 @@
 
 (function_definition 
  shortName: (nested_identifier) @function)
+(function_call
+ name: (nested_identifier) @function.method)
+(function_reference
+ name: (nested_identifier) @function)
 
 (function_definition_parameter) @type
+
+(decision_definition
+ decision_type: (decision_definition_type) @keyword)
 
 [
  (comment)

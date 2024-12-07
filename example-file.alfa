@@ -21,6 +21,8 @@ target clause "foo" or "bar" and true clause false
 policy foo {
 rule {
 condition allOf(foo(""),function[foo], "":time, function[biz])
+on permit {
+}
 }
 }
 }
